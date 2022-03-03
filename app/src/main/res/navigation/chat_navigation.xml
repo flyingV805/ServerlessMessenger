@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_navigation"
+    app:startDestination="@+id/chatsList">
+
+    <fragment
+        android:id="@+id/chatsList"
+        android:name="kz.flyingv.serverlessmessenger.activity.fragment.AllChatsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_chats" >
+
+        <action
+            android:id="@+id/action_chatsList_to_chat"
+            app:destination="@id/chat" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="kz.flyingv.serverlessmessenger.activity.fragment.ChatFragment"
+        android:label=""
+        tools:layout="@layout/fragment_chat" />
+
+</navigation>

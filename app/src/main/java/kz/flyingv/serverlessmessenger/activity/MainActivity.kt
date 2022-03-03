@@ -1,7 +1,8 @@
-package kz.flyingv.serverlessmessenger
+package kz.flyingv.serverlessmessenger.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kz.flyingv.serverlessmessenger.R
 
 class MainActivity : AppCompatActivity() {
 
