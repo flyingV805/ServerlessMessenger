@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
 }
 
@@ -9,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "kz.flyingv.serverlessmessenger"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -45,6 +46,15 @@ dependencies {
 
     //firebase
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
+
+    //storage
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    kapt "androidx.room:room-compiler:2.4.2"
+    //annotationProcessor "androidx.room:room-compiler:2.4.1"
+    implementation "androidx.room:room-paging:2.4.2"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

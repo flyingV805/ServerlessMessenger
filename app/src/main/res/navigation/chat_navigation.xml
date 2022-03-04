@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/chatsList"
-        android:name="kz.flyingv.serverlessmessenger.activity.fragment.AllChatsFragment"
+        android:name="kz.flyingv.serverlessmessenger.activity.main.fragment.AllChatsFragment"
         android:label=""
         tools:layout="@layout/fragment_chats" >
 
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/chat"
-        android:name="kz.flyingv.serverlessmessenger.activity.fragment.ChatFragment"
+        android:name="kz.flyingv.serverlessmessenger.activity.main.fragment.ChatFragment"
         android:label=""
         tools:layout="@layout/fragment_chat" />
 

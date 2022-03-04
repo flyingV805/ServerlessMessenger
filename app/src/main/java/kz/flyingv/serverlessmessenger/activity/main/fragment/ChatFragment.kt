@@ -1,4 +1,4 @@
-package kz.flyingv.serverlessmessenger.activity.fragment
+package kz.flyingv.serverlessmessenger.activity.main.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kz.flyingv.serverlessmessenger.R
 
-class AllChatsFragment : Fragment() {
+class ChatFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,8 +15,7 @@ class AllChatsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chats, container, false)
+        return inflater.inflate(R.layout.fragment_chat, container, false)
     }
-
 
 }
