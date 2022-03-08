@@ -4,4 +4,9 @@
     <dimen name="speech_bubble_corners_plus_tail">15dp</dimen>
     <dimen name="speech_bubble_spacing">5dp</dimen>
     <dimen name="speech_bubble_tail">25dp</dimen>
+
+    <dimen name="sub_screen_padding">64dp</dimen>
+    <dimen name="main_padding">16dp</dimen>
+    <dimen name="element_padding">8dp</dimen>
+
 </resources>
