@@ -3,6 +3,7 @@ package kz.flyingv.serverlessmessenger.activity.start
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -22,6 +23,7 @@ class StartActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+/*
         binding.signInGoogle.setOnClickListener {
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -31,7 +33,7 @@ class StartActivity : AppCompatActivity() {
             val signInIntent = googleSignInClient.signInIntent
             resultLauncher.launch(signInIntent)
 
-        }
+        }*/
 
     }
 

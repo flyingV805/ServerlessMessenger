@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setup_navigation"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/welcome">
+
+    <fragment
+        android:id="@+id/welcome"
+        android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.WelcomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_start_welcome" >
+
+        <action
+            android:id="@+id/toSignIn"
+            app:destination="@id/googleAuth" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/googleAuth"
+        android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.GoogleAuthFragment"
+        android:label=""
+        tools:layout="@layout/fragment_start_google_auth" >
+
+        <action
+            android:id="@+id/toEditProfile"
+            app:destination="@id/editProfile" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.EditProfileFragment"
+        android:label=""
+        tools:layout="@layout/fragment_start_edit_profile" >
+
+        <action
+            android:id="@+id/actionDone"
+            app:destination="@id/done" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/done"
+        android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.CompleteFragment"
+        android:label=""
+        tools:layout="@layout/fragment_start_google_auth" />
+
+
+</navigation>

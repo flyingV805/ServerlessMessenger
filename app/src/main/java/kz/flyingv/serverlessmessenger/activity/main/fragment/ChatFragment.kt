@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kz.flyingv.serverlessmessenger.R
 import kz.flyingv.serverlessmessenger.adapter.ChatMessagesAdapter
+import kz.flyingv.serverlessmessenger.adapter.observer.ScrollToBottomObserver
 import kz.flyingv.serverlessmessenger.databinding.FragmentChatBinding
 import kz.flyingv.serverlessmessenger.model.Message
 
@@ -25,7 +28,7 @@ class ChatFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         db = Firebase.database("https://serverlessmessenger-default-rtdb.asia-southeast1.firebasedatabase.app")
-        //db.reference.child("messages")
+
 
 
     }
@@ -39,49 +42,22 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val messagesRef = db.reference.child("messages")
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setLogo(R.drawable.ic_baseline_person_24)
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayUseLogoEnabled(true)
 
-        val options = FirebaseRecyclerOptions.Builder<Message>()
-            .setQuery(messagesRef, Message::class.java)
-            .build()
-
-        db.reference.child("messages").get().addOnCompleteListener {
-            Log.d("snapshot", it.result?.toString() ?: "")
-        }
-
-        val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.stackFromEnd = true
-
-        adapter = ChatMessagesAdapter(options)
-
-        binding.messagesView.layoutManager = layoutManager
-        binding.messagesView.adapter = adapter
-
-        binding.sendMessage.setOnClickListener {
-
-            val friendlyMessage = Message(
-                binding.newMessage.text.toString(),
-                "",
-                "",
-                null
-            )
-            db.reference.child("messages").push().setValue(friendlyMessage)
-            binding.newMessage.setText("")
-
-            Log.d("count", adapter.itemCount.toString())
-        }
 
     }
 
     override fun onPause() {
         super.onPause()
-        adapter.stopListening()
         Log.d("onPause", "adapter.startListening()")
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.startListening()
         Log.d("onResume", "adapter.stopListening()")
     }
 }
