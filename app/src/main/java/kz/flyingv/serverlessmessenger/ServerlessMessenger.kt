@@ -14,7 +14,7 @@ import org.koin.dsl.module
 class ServerlessMessenger: Application() {
 
     private val appModule = module {
-        single { Firebase.database("https://serverlessmessenger-default-rtdb.asia-southeast1.firebasedatabase.app") }
+        single { Firebase.database(BuildConfig.FRB_DB_URL) }
         single<UserRepository> { UserRepositoryImpl() }
         single<MessagesRepository> { MessagesRepositoryImpl() }
     }
