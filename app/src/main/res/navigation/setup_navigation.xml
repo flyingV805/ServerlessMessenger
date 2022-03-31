@@ -36,13 +36,13 @@
         tools:layout="@layout/fragment_start_edit_profile" >
 
         <action
-            android:id="@+id/actionDone"
-            app:destination="@id/done" />
+            android:id="@+id/toSetupDone"
+            app:destination="@id/setupDone" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/done"
+        android:id="@+id/setupDone"
         android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.CompleteFragment"
         android:label=""
         tools:layout="@layout/fragment_start_google_auth" />

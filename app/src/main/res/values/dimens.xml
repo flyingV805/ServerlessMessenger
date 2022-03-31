@@ -5,6 +5,8 @@
     <dimen name="speech_bubble_spacing">5dp</dimen>
     <dimen name="speech_bubble_tail">25dp</dimen>
 
+    <dimen name="setup_profile_picture_size">160dp</dimen>
+
     <dimen name="sub_screen_padding">64dp</dimen>
     <dimen name="main_padding">16dp</dimen>
     <dimen name="double_padding">32dp</dimen>

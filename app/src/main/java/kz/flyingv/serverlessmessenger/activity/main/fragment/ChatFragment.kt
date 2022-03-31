@@ -7,34 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kz.flyingv.serverlessmessenger.R
-import kz.flyingv.serverlessmessenger.adapter.ChatMessagesAdapter
-import kz.flyingv.serverlessmessenger.adapter.observer.ScrollToBottomObserver
-import kz.flyingv.serverlessmessenger.databinding.FragmentChatBinding
-import kz.flyingv.serverlessmessenger.model.Message
+import kz.flyingv.serverlessmessenger.databinding.FragmentMainChatBinding
 
 class ChatFragment : Fragment() {
 
-    private lateinit var db: FirebaseDatabase
-    private lateinit var binding: FragmentChatBinding
-    private lateinit var adapter: ChatMessagesAdapter
+    private lateinit var binding: FragmentMainChatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        db = Firebase.database("https://serverlessmessenger-default-rtdb.asia-southeast1.firebasedatabase.app")
-
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentChatBinding.inflate(inflater, container, false)
+        binding = FragmentMainChatBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }
