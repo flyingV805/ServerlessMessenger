@@ -16,6 +16,7 @@
         app:cardCornerRadius="@dimen/setup_profile_picture_size">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/userAvatar"
             android:layout_width="@dimen/setup_profile_picture_size"
             android:layout_height="@dimen/setup_profile_picture_size"
             android:src="@drawable/app_background"
@@ -32,6 +33,7 @@
         app:prefixText="@string/user_nickname_prefix">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -45,6 +47,7 @@
         app:helperText="@string/androidx_startup">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/displayName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -27,6 +27,10 @@
             android:id="@+id/toEditProfile"
             app:destination="@id/editProfile" />
 
+        <action
+            android:id="@+id/toWelcomeBack"
+            app:destination="@id/welcomeBack" />
+
     </fragment>
 
     <fragment
@@ -42,10 +46,22 @@
     </fragment>
 
     <fragment
+        android:id="@+id/welcomeBack"
+        android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.WelcomeBackFragment"
+        android:label=""
+        tools:layout="@layout/fragment_start_welcome_back" >
+
+        <action
+            android:id="@+id/toSetupDone"
+            app:destination="@id/setupDone" />
+
+    </fragment>
+
+    <fragment
         android:id="@+id/setupDone"
         android:name="kz.flyingv.serverlessmessenger.activity.start.fragment.CompleteFragment"
         android:label=""
-        tools:layout="@layout/fragment_start_google_auth" />
+        tools:layout="@layout/fragment_start_complete" />
 
 
 </navigation>
