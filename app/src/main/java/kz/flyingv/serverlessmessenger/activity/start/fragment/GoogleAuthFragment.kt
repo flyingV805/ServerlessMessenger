@@ -56,6 +56,7 @@ class GoogleAuthFragment : Fragment() {
             // Google Sign In was successful, authenticate with Firebase
             val account = task.getResult(ApiException::class.java)!!
             viewModel.authUser(
+                idToken = account.idToken!!,
                 uniqueId = account.id!!,
                 email = account.email!!,
                 name = account.displayName!!,

@@ -16,13 +16,10 @@ class StartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStartBinding
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
 
