@@ -8,7 +8,7 @@
     android:gravity="center"
     android:paddingStart="@dimen/sub_screen_padding"
     android:paddingEnd="@dimen/sub_screen_padding"
-    tools:context=".activity.start.fragment.EditProfileFragment">
+    tools:context=".ui.activity.start.fragment.EditProfileFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_height="@dimen/setup_profile_picture_size"
