@@ -1,5 +1,10 @@
 package kz.flyingv.serverlessmessenger.data.model
 
-class Chat {
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-}
+@Entity
+data class Chat(
+    @PrimaryKey(autoGenerate = true) val chatId: Long = 0,
+    val companion: Companion
+)
