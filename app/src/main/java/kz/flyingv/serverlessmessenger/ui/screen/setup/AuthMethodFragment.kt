@@ -21,11 +21,9 @@ import kz.flyingv.serverlessmessenger.ui.screen.setup.viewmodel.AuthorizeViewMod
 fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewModel = viewModel()) {
 
     val screenState = viewModel.authScreenState.collectAsState().value
-    
+
     Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
