@@ -1,6 +1,7 @@
 package kz.flyingv.serverlessmessenger.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,24 +17,34 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 import kz.flyingv.serverlessmessenger.ui.screen.chatlist.ChatListScreen
 import kz.flyingv.serverlessmessenger.ui.screen.chatscreen.ChatScreen
 import kz.flyingv.serverlessmessenger.ui.screen.setup.AuthMethodFragment
 import kz.flyingv.serverlessmessenger.ui.screen.setup.WelcomeFragment
 import kz.flyingv.serverlessmessenger.ui.theme.ServerlessMessengerTheme
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class ServerlessMessengerApp : ComponentActivity() {
+class ServerlessMessengerApp : ComponentActivity(), KoinComponent {
+
+    private val firebaseAuth: FirebaseAuth by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val currentUser = firebaseAuth.currentUser
+        val isAuthorized = firebaseAuth.currentUser != null
+        Log.d("currentUser", currentUser.toString())
+        Log.d("isAuthorized", isAuthorized.toString())
+
         setContent {
             ServerlessMessengerTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainHost()
+                    MainHost(firebaseAuth.currentUser != null)
                 }
             }
         }
@@ -41,10 +52,13 @@ class ServerlessMessengerApp : ComponentActivity() {
 }
 
 @Composable
-fun MainHost(){
+fun MainHost(isAuthorized: Boolean){
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "setup") {
+    NavHost(
+        navController = navController,
+        startDestination = if(!isAuthorized) "setup" else "chat"
+    ) {
         setupGraph(navController)
         chatGraph(navController)
     }
@@ -74,6 +88,6 @@ fun NavGraphBuilder.chatGraph(navController: NavController){
 @Composable
 fun DefaultPreview() {
     ServerlessMessengerTheme {
-        MainHost()
+        MainHost(false)
     }
 }
