@@ -53,13 +53,13 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 
     //ui
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.android.material:material:1.6.1'
 
     //ui compose
     implementation "com.airbnb.android:lottie-compose:5.0.3"
@@ -68,7 +68,7 @@ dependencies {
     implementation 'androidx.compose.animation:animation:1.1.1'
     implementation 'androidx.compose.ui:ui-tooling:1.1.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
-    implementation "com.google.android.material:compose-theme-adapter:1.1.10"
+    implementation "com.google.android.material:compose-theme-adapter:1.1.11"
     implementation "com.google.accompanist:accompanist-drawablepainter:0.16.0"
     implementation "androidx.navigation:navigation-compose:2.4.2"
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -83,10 +83,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1")
     // Firebase UI Library
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
-
     //storage
     implementation "androidx.room:room-runtime:2.4.2"
     implementation "androidx.room:room-ktx:2.4.2"
