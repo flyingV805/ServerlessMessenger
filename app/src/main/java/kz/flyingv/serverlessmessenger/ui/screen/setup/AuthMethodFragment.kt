@@ -10,15 +10,18 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -31,6 +34,7 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
 
     val context = LocalContext.current
     val screenState = viewModel.authScreenState.collectAsState().value
+    val composition by rememberLottieComposition(LottieCompositionSpec.Asset("person.json"))
 
     val googleAuthLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
         val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
@@ -39,6 +43,7 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
             viewModel.signInGoogleAuth(credential)
         } catch (e: ApiException) {
+
             Log.w("TAG", "Google sign in failed", e)
         }
     }
@@ -48,6 +53,12 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        LottieAnimation(
+            composition,
+            modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
+            restartOnPlay = true,
+            iterations = 1
+        )
         Button(
             modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
             onClick = {
@@ -63,10 +74,11 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             Spacer(modifier = Modifier.width(16.dp))
             Text( modifier = Modifier.fillMaxWidth(), text = "Sign in with Google", textAlign = TextAlign.Center)
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))/*
         Button(
             modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
-            onClick = {  }
+            onClick = {
+            }
         ) {
             Icon(Icons.Filled.Email, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
@@ -80,7 +92,7 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             Icon(Icons.Filled.Phone, contentDescription = null)
             Spacer(modifier = Modifier.width(16.dp))
             Text( modifier = Modifier.fillMaxWidth(), text = "Sign in with phone", textAlign = TextAlign.Center)
-        }
+        }*/
     }
 
 }
