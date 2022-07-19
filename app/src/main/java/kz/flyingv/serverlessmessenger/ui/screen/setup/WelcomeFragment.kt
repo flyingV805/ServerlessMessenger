@@ -31,11 +31,12 @@ fun WelcomeFragment(navController: NavController) {
     ) {
         LottieAnimation(
             composition,
-            modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.fillMaxWidth(0.6f),
             restartOnPlay = true,
             iterations = 3
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(IntrinsicSize.Max))
         Text("Welcome to ServerlessMessenger", textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
         Text("Fast, Easy, Secure\nNo servers, No data collecting", textAlign = TextAlign.Center)

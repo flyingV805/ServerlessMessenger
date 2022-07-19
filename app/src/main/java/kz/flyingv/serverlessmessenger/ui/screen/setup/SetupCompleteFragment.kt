@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -16,7 +17,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun SetupCompleteFragment(navController: NavController) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.Asset("chating.json"))
+    val composition by rememberLottieComposition(LottieCompositionSpec.Asset("success.json"))
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
@@ -24,14 +25,13 @@ fun SetupCompleteFragment(navController: NavController) {
     ) {
         LottieAnimation(
             composition,
-            modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier.fillMaxWidth(0.6f),
             restartOnPlay = true,
             iterations = 3
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text("Welcome to ServerlessMessenger", textAlign = TextAlign.Center)
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Fast, Easy, Secure\nNo servers, No data collecting", textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             modifier = Modifier
@@ -41,7 +41,7 @@ fun SetupCompleteFragment(navController: NavController) {
 
             }
         ) {
-            Text("Authorize")
+            Text("START")
         }
     }
 }

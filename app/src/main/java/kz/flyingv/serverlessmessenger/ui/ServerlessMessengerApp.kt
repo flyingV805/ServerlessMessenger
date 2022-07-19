@@ -7,7 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,8 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import kz.flyingv.serverlessmessenger.ui.screen.chatlist.ChatListScreen
 import kz.flyingv.serverlessmessenger.ui.screen.chatscreen.ChatScreen
-import kz.flyingv.serverlessmessenger.ui.screen.setup.AuthMethodFragment
-import kz.flyingv.serverlessmessenger.ui.screen.setup.WelcomeFragment
+import kz.flyingv.serverlessmessenger.ui.screen.setup.*
 import kz.flyingv.serverlessmessenger.ui.theme.ServerlessMessengerTheme
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -69,6 +67,9 @@ fun NavGraphBuilder.setupGraph(navController: NavController){
     navigation(startDestination = "welcome", route = "setup") {
         composable("welcome") { WelcomeFragment(navController) }
         composable("authMethod") { AuthMethodFragment(navController) }
+        composable("setupProfile") { SetupProfileFragment(navController) }
+        composable("biometricOpen") { BiometricAuthFragment(navController) }
+        composable("setupComplete") { SetupCompleteFragment(navController) }
     }
 }
 

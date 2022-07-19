@@ -43,7 +43,7 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             val credential = GoogleAuthProvider.getCredential(account.idToken!!, null)
             viewModel.signInGoogleAuth(credential)
         } catch (e: ApiException) {
-
+            navController.navigate("setupProfile")
             Log.w("TAG", "Google sign in failed", e)
         }
     }
