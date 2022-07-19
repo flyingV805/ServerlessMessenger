@@ -25,17 +25,24 @@ import kz.flyingv.serverlessmessenger.R
 fun WelcomeFragment(navController: NavController) {
     val composition by rememberLottieComposition(LottieCompositionSpec.Asset("chating.json"))
     Column(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LottieAnimation(
-            composition,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxWidth(0.6f),
-            restartOnPlay = true,
-            iterations = 3
-        )
+        Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.Center
+        ){
+            LottieAnimation(
+                composition,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxWidth(0.6f),
+                restartOnPlay = true,
+                iterations = 3
+            )
+        }
         Spacer(modifier = Modifier.height(IntrinsicSize.Max))
         Text("Welcome to ServerlessMessenger", textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))
@@ -51,6 +58,7 @@ fun WelcomeFragment(navController: NavController) {
         ) {
             Text("Authorize")
         }
+        Spacer(modifier = Modifier.height(48.dp))
     }
 
 
