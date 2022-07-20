@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
@@ -28,7 +29,7 @@ fun SetupCompleteFragment(navController: NavController) {
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxWidth(0.6f),
             restartOnPlay = true,
-            iterations = 3
+            iterations = LottieConstants.IterateForever
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text("Welcome to ServerlessMessenger", textAlign = TextAlign.Center)
@@ -38,7 +39,7 @@ fun SetupCompleteFragment(navController: NavController) {
                 .height(56.dp)
                 .fillMaxWidth(0.6f),
             onClick = {
-
+                navController.navigate("chat")
             }
         ) {
             Text("START")

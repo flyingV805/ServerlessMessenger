@@ -28,13 +28,18 @@ fun BiometricAuthFragment(navController: NavController, viewModel: AuthorizeView
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LottieAnimation(
-            composition,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.fillMaxWidth(0.6f),
-            restartOnPlay = true,
-            iterations = 1
-        )
+        Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.Center
+        ){
+            LottieAnimation(
+                composition,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier.fillMaxWidth(0.6f),
+                restartOnPlay = true,
+                iterations = 1
+            )
+        }
         Spacer(modifier = Modifier.height(IntrinsicSize.Max))
         Text("Secure app opening", textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(16.dp))

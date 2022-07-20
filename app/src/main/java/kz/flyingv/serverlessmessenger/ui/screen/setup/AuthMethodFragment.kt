@@ -53,12 +53,17 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LottieAnimation(
-            composition,
-            modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
-            restartOnPlay = true,
-            iterations = 1
-        )
+        Box(
+            modifier = Modifier.weight(1f),
+            contentAlignment = Alignment.Center
+        ){
+            LottieAnimation(
+                composition,
+                modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
+                restartOnPlay = true,
+                iterations = 1
+            )
+        }
         Button(
             modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
             onClick = {
@@ -74,7 +79,7 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             Spacer(modifier = Modifier.width(16.dp))
             Text( modifier = Modifier.fillMaxWidth(), text = "Sign in with Google", textAlign = TextAlign.Center)
         }
-        Spacer(modifier = Modifier.height(16.dp))/*
+        Spacer(modifier = Modifier.height(48.dp))/*
         Button(
             modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
             onClick = {

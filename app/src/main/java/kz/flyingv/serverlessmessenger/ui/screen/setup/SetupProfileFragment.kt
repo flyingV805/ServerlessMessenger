@@ -45,7 +45,7 @@ fun SetupProfileFragment(navController: NavController, viewModel: AuthorizeViewM
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.7f)
                 .padding(start = 16.dp, end = 16.dp),
             value = "",
             singleLine = true,
@@ -54,7 +54,30 @@ fun SetupProfileFragment(navController: NavController, viewModel: AuthorizeViewM
             onValueChange = {
                 //viewModel.makeAction(NewReminderAction.UpdateName(it))
             },
-            placeholder = { Text("Reminder Name") },
+            placeholder = { Text("Your nickname") },
+            keyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Words)
+        )
+        AnimatedVisibility(visible = false) {
+            Text(
+                text = "You need it, trust me",
+                color = MaterialTheme.colors.error,
+                style = MaterialTheme.typography.caption,
+                modifier = Modifier.padding(start = 16.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth(0.7f)
+                .padding(start = 16.dp, end = 16.dp),
+            value = "",
+            singleLine = true,
+            isError = false,
+            leadingIcon = { Icon(painterResource(id = R.drawable.ic_baseline_person_24), contentDescription = null)},
+            onValueChange = {
+                //viewModel.makeAction(NewReminderAction.UpdateName(it))
+            },
+            placeholder = { Text("Your name") },
             keyboardOptions = KeyboardOptions.Default.copy(capitalization = KeyboardCapitalization.Words)
         )
         AnimatedVisibility(visible = false) {
@@ -66,7 +89,6 @@ fun SetupProfileFragment(navController: NavController, viewModel: AuthorizeViewM
             )
         }
         Spacer(modifier = Modifier.height(16.dp))
-
         Button(
             modifier = Modifier
                 .height(56.dp)
@@ -86,7 +108,7 @@ fun SetupProfileFragment(navController: NavController, viewModel: AuthorizeViewM
                 textAlign = TextAlign.Center
             )
         }
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(48.dp))
     }
 
 }
