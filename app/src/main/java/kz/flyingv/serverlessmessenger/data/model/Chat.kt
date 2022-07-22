@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class Chat(
     @PrimaryKey(autoGenerate = true) val chatId: Long = 0,
-    val companion: Companion
+    val companion: Companion,
+    val lastMessage: LastMessage
 )
