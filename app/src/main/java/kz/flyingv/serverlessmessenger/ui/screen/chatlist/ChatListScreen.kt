@@ -61,7 +61,10 @@ fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = 
         content = {
             ChatList(
                 modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(it),
-                chats = state.chats
+                chats = state.chats,
+                chatSelected = { chat ->
+                    navController.navigate("chat/${chat.chatId}")
+                }
             )
         },
         drawerContent = {
@@ -78,24 +81,24 @@ fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = 
 }
 
 @Composable
-fun ChatList(modifier: Modifier, chats: List<Chat>){
+fun ChatList(modifier: Modifier, chats: List<Chat>, chatSelected: (chat: Chat)-> Unit?){
     LazyColumn(modifier = modifier){
         items(
             count = chats.size,
             itemContent = {
-                ChatListItem(chats[it])
+                ChatListItem(chats[it], chatSelected)
             }
         )
     }
 }
 
 @Composable
-fun ChatListItem(chat: Chat){
+fun ChatListItem(chat: Chat, chatSelected: (chat: Chat)-> Unit?){
     Card(
         modifier = Modifier.fillMaxWidth()
             .padding(8.dp)
             .clickable {
-
+                chatSelected(chat)
             },
         elevation = 8.dp
     ) {

@@ -17,17 +17,17 @@ class ChatListViewModel: ViewModel() {
                 LastMessage("This girl is on fireeeee", System.currentTimeMillis())
             ),
             Chat(
-                1,
+                2,
                 Companion("https://static.wikia.nocookie.net/uncharted/images/9/9d/Nathan_Drake_from_A_Thief%27s_End.png/revision/latest?cb=20180521172750", "Nathan Drake", "@sigparvismagna", ""),
                 LastMessage("You will not believe this", System.currentTimeMillis())
             ),
             Chat(
-                1,
+                3,
                 Companion("https://static.wikia.nocookie.net/uncharted-game/images/0/08/ChloeFrazer-UTLL.png/revision/latest?cb=20190305171141&path-prefix=ru", "Chloe Frazer", "@chlochlo", ""),
                 LastMessage("How bout a dinner?", System.currentTimeMillis())
             ),
             Chat(
-                1,
+                4,
                 Companion("https://static.wikia.nocookie.net/uncharted-game/images/0/02/Uncharted-4-elena-fisher-0.jpg/revision/latest?cb=20190305170919&path-prefix=ru", "Elena Fisher", "@thee", ""),
                 LastMessage("Hey!", System.currentTimeMillis())
             )
