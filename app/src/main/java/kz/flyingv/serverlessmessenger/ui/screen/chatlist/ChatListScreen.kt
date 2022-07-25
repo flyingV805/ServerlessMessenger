@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,10 +29,12 @@ import kz.flyingv.serverlessmessenger.data.model.Companion
 import kz.flyingv.serverlessmessenger.data.model.LastMessage
 
 @Composable
-fun ChatListScreen(navController: NavController, viewMode: ChatListViewModel = viewModel()) {
+fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = viewModel()) {
 
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+
+    val state = viewModel.screenStateFlow.collectAsState().value
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -57,10 +60,8 @@ fun ChatListScreen(navController: NavController, viewMode: ChatListViewModel = v
         },
         content = {
             ChatList(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .padding(it)
+                modifier = Modifier.fillMaxWidth().fillMaxHeight().padding(it),
+                chats = state.chats
             )
         },
         drawerContent = {
@@ -77,25 +78,21 @@ fun ChatListScreen(navController: NavController, viewMode: ChatListViewModel = v
 }
 
 @Composable
-fun ChatList(modifier: Modifier){
+fun ChatList(modifier: Modifier, chats: List<Chat>){
     LazyColumn(modifier = modifier){
-        item { 
-            ChatListItem(
-                chat = Chat(
-                    1,
-                    Companion("", "Victor Sullivan", "", ""),
-                    LastMessage("This girl is on fireeeee", System.currentTimeMillis())
-                )
-            )
-        }
+        items(
+            count = chats.size,
+            itemContent = {
+                ChatListItem(chats[it])
+            }
+        )
     }
 }
 
 @Composable
 fun ChatListItem(chat: Chat){
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
             .padding(8.dp)
             .clickable {
 
@@ -114,7 +111,7 @@ fun ChatListItem(chat: Chat){
                 contentAlignment = Alignment.Center
             ){
                 Image(
-                    painter = rememberAsyncImagePainter("https://static.wikia.nocookie.net/uncharted-game/images/3/34/Image.png/revision/latest?cb=20190305165221&path-prefix=ru"),
+                    painter = rememberAsyncImagePainter(chat.companion.photoUrl),
                     contentDescription = null,
                     modifier = Modifier
                         .size(56.dp)
