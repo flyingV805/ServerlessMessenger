@@ -24,7 +24,6 @@ fun ChatScreen(navController: NavController, chatId: String?, viewModel: ChatScr
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
 
 
-
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
