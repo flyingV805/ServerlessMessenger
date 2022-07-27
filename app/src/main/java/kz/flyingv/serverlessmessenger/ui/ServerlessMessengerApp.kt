@@ -32,7 +32,7 @@ class ServerlessMessengerApp : ComponentActivity(), KoinComponent {
         super.onCreate(savedInstanceState)
 
         val currentUser = firebaseAuth.currentUser
-        val isAuthorized = firebaseAuth.currentUser != null
+        val isAuthorized = true//firebaseAuth.currentUser != null
         Log.d("currentUser", currentUser.toString())
         Log.d("isAuthorized", isAuthorized.toString())
 
@@ -42,7 +42,7 @@ class ServerlessMessengerApp : ComponentActivity(), KoinComponent {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MainHost(firebaseAuth.currentUser != null)
+                    MainHost(isAuthorized)
                 }
             }
         }

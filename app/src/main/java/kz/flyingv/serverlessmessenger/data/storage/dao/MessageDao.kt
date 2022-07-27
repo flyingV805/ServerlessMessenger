@@ -11,7 +11,7 @@ interface MessageDao {
     fun getAllForChatFlow(chatId: Int): Flow<List<Message>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(message: Message)
+    fun insert(message: Message): Long
 
     @Delete
     fun delete(message: Message)

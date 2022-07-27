@@ -3,6 +3,7 @@ package kz.flyingv.serverlessmessenger.data.storage.dao
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import kz.flyingv.serverlessmessenger.data.model.Chat
+import kz.flyingv.serverlessmessenger.data.model.ChatInfo
 
 @Dao
 interface ChatDao {
@@ -18,5 +19,11 @@ interface ChatDao {
 
     @Delete
     fun delete(chat: Chat)
+
+    /************************************/
+
+    @Transaction
+    @Query("SELECT * FROM Chat")
+    fun getAllChatInfo(): Flow<List<ChatInfo>>
 
 }

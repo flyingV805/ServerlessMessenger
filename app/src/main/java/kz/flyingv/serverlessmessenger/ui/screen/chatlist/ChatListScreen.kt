@@ -25,8 +25,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import kz.flyingv.serverlessmessenger.R
 import kz.flyingv.serverlessmessenger.data.model.Chat
-import kz.flyingv.serverlessmessenger.data.model.Companion
-import kz.flyingv.serverlessmessenger.data.model.LastMessage
+import kz.flyingv.serverlessmessenger.data.model.ChatInfo
 
 @Composable
 fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = viewModel()) {
@@ -81,7 +80,7 @@ fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = 
 }
 
 @Composable
-fun ChatList(modifier: Modifier, chats: List<Chat>, chatSelected: (chat: Chat)-> Unit?){
+fun ChatList(modifier: Modifier, chats: List<ChatInfo>, chatSelected: (chat: Chat)-> Unit?){
     LazyColumn(modifier = modifier){
         items(
             count = chats.size,
@@ -93,12 +92,12 @@ fun ChatList(modifier: Modifier, chats: List<Chat>, chatSelected: (chat: Chat)->
 }
 
 @Composable
-fun ChatListItem(chat: Chat, chatSelected: (chat: Chat)-> Unit?){
+fun ChatListItem(chat: ChatInfo, chatSelected: (chat: Chat)-> Unit?){
     Card(
         modifier = Modifier.fillMaxWidth()
             .padding(8.dp)
             .clickable {
-                chatSelected(chat)
+                chatSelected(chat.chat)
             },
         elevation = 8.dp
     ) {
@@ -114,7 +113,7 @@ fun ChatListItem(chat: Chat, chatSelected: (chat: Chat)-> Unit?){
                 contentAlignment = Alignment.Center
             ){
                 Image(
-                    painter = rememberAsyncImagePainter(chat.companion.photoUrl),
+                    painter = rememberAsyncImagePainter("chat.companion.photoUrl"),
                     contentDescription = null,
                     modifier = Modifier
                         .size(56.dp)
@@ -125,9 +124,9 @@ fun ChatListItem(chat: Chat, chatSelected: (chat: Chat)-> Unit?){
             }
             Spacer(modifier = Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(text = chat.companion.displayName, style = typography.h6, maxLines = 1)
+                Text(text = "chat.companion.displayName", style = typography.h6, maxLines = 1)
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(text = chat.lastMessage.message, style = typography.body1, maxLines = 1)
+                Text(text = "chat.lastMessage.message", style = typography.body1, maxLines = 1)
             }
             Spacer(modifier = Modifier.width(8.dp))
             Text(text = "16:32", style = typography.caption, maxLines = 1)

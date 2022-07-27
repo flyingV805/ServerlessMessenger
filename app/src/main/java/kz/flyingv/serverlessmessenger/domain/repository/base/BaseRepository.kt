@@ -1,4 +1,4 @@
-package kz.flyingv.serverlessmessenger.data.repository.base
+package kz.flyingv.serverlessmessenger.domain.repository.base
 
 import com.google.firebase.database.FirebaseDatabase
 import org.koin.core.component.KoinComponent

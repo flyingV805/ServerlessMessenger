@@ -1,6 +1,6 @@
-package kz.flyingv.serverlessmessenger.data.repository
+package kz.flyingv.serverlessmessenger.domain.repository
 
-import kz.flyingv.serverlessmessenger.data.repository.base.BaseRepository
+import kz.flyingv.serverlessmessenger.domain.repository.base.BaseRepository
 
 interface MessagesRepository {
 
