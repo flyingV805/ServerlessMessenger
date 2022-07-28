@@ -7,6 +7,9 @@ import kz.flyingv.serverlessmessenger.data.model.Companion
 @Dao
 interface CompanionDao {
 
+    @Query("SELECT COUNT(id) FROM Companion")
+    fun getCount(): Int
+
     @Query("SELECT * FROM Companion")
     fun getAllFlow(): Flow<List<Companion>>
 

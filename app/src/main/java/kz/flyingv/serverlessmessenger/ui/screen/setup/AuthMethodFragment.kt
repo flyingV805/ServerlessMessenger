@@ -8,9 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Phone
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -36,6 +34,8 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
     val screenState = viewModel.authScreenState.collectAsState().value
     val composition by rememberLottieComposition(LottieCompositionSpec.Asset("person.json"))
 
+    val openDialog = remember { mutableStateOf(false)  }
+
     val googleAuthLauncher = rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
         val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
         try {
@@ -49,7 +49,9 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
     }
 
     Column(
-        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -59,13 +61,17 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
         ){
             LottieAnimation(
                 composition,
-                modifier = Modifier.fillMaxWidth(0.6f).wrapContentHeight(),
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)
+                    .wrapContentHeight(),
                 restartOnPlay = true,
                 iterations = 1
             )
         }
         Button(
-            modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
+            modifier = Modifier
+                .height(56.dp)
+                .fillMaxWidth(0.6f),
             onClick = {
                 val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken("token")
@@ -79,7 +85,38 @@ fun AuthMethodFragment(navController: NavController, viewModel: AuthorizeViewMod
             Spacer(modifier = Modifier.width(16.dp))
             Text( modifier = Modifier.fillMaxWidth(), text = "Sign in with Google", textAlign = TextAlign.Center)
         }
-        Spacer(modifier = Modifier.height(48.dp))/*
+        TextButton(
+            modifier = Modifier.fillMaxWidth(0.6f),
+            onClick = {
+                openDialog.value = true
+            }
+        ) {
+            Text( modifier = Modifier.fillMaxWidth(), text = "Why do you need it, step-dev?", textAlign = TextAlign.Center)
+        }
+        Spacer(modifier = Modifier.height(48.dp))
+
+        if (openDialog.value) {
+            AlertDialog(
+                onDismissRequest = { openDialog.value = false },
+                title = {
+                    Text(text = "Glad you asked!")
+                },
+                text = {
+                    Text("Here is a text ")
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            openDialog.value = false
+                        }) {
+                        Text("OK, Got it!")
+                    }
+                },
+            )
+        }
+    
+    
+    /*
         Button(
             modifier = Modifier.height(56.dp).fillMaxWidth(0.6f),
             onClick = {

@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 import kz.flyingv.serverlessmessenger.ui.screen.chatlist.ChatListScreen
 import kz.flyingv.serverlessmessenger.ui.screen.chatscreen.ChatScreen
+import kz.flyingv.serverlessmessenger.ui.screen.companions.CompanionsScreen
 import kz.flyingv.serverlessmessenger.ui.screen.setup.*
 import kz.flyingv.serverlessmessenger.ui.theme.ServerlessMessengerTheme
 import org.koin.core.component.KoinComponent
@@ -82,6 +83,7 @@ fun NavGraphBuilder.chatGraph(navController: NavController){
                 entry.arguments?.getString("chatId")
             )
         }
+        composable("companions") { CompanionsScreen(navController) }
     }
 }
 

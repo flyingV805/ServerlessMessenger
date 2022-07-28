@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import kz.flyingv.serverlessmessenger.R
 import kz.flyingv.serverlessmessenger.data.model.Chat
 import kz.flyingv.serverlessmessenger.data.model.ChatInfo
@@ -71,7 +75,7 @@ fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = 
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                navController.navigate("chat/12345")
+                navController.navigate("companions")
             }) {Icon(Icons.Filled.Add, "")}
         }
     )
@@ -82,6 +86,35 @@ fun ChatListScreen(navController: NavController, viewModel: ChatListViewModel = 
 @Composable
 fun ChatList(modifier: Modifier, chats: List<ChatInfo>, chatSelected: (chat: Chat)-> Unit?){
     LazyColumn(modifier = modifier){
+
+        if(chats.isEmpty()){
+            item {
+                val composition by rememberLottieComposition(LottieCompositionSpec.Asset("emptychats.json"))
+                Column(
+                    modifier = Modifier.wrapContentHeight().padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    Spacer(modifier = Modifier.height(36.dp))
+                    Text(
+                        text = "Oops, it is so empty in your inbox ...",
+                        style = typography.h6
+                    )
+                    LottieAnimation(
+                        composition,
+                        modifier = Modifier.fillMaxWidth().height(256.dp),
+                        contentScale = ContentScale.FillHeight,
+                        restartOnPlay = false,
+                        iterations = 1
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Text(
+                        text = "Start a conversation!",
+                        style = typography.h6
+                    )
+                }
+            }
+        }
+
         items(
             count = chats.size,
             itemContent = {
@@ -113,7 +146,7 @@ fun ChatListItem(chat: ChatInfo, chatSelected: (chat: Chat)-> Unit?){
                 contentAlignment = Alignment.Center
             ){
                 Image(
-                    painter = rememberAsyncImagePainter("chat.companion.photoUrl"),
+                    painter = rememberAsyncImagePainter(chat.companion.firstOrNull()?.photoUrl ?: ""),
                     contentDescription = null,
                     modifier = Modifier
                         .size(56.dp)
@@ -124,7 +157,7 @@ fun ChatListItem(chat: ChatInfo, chatSelected: (chat: Chat)-> Unit?){
             }
             Spacer(modifier = Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(text = "chat.companion.displayName", style = typography.h6, maxLines = 1)
+                Text(text = chat.companion.firstOrNull()?.displayName ?: "", style = typography.h6, maxLines = 1)
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(text = "chat.lastMessage.message", style = typography.body1, maxLines = 1)
             }
